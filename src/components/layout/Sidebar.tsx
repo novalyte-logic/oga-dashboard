@@ -1,75 +1,59 @@
-import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
+'use client';
 
-const NavContainer = styled.nav`
-  width: 280px;
-  background-color: var(--color-primary);
-  border-right: 1px solid var(--color-tertiary);
-  padding: 1rem 0;
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
-`;
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { Shield, Radar } from 'lucide-react';
 
-const Logo = styled.div`
-  font-weight: 700;
-  font-size: 1.5rem;
-  padding: 1rem 1.5rem;
-  color: var(--color-text-primary);
-  text-align: center;
-  margin-bottom: 2rem;
-  letter-spacing: 1px;
-`;
-
-const NavList = styled.ul`
-  list-style: none;
-`;
-
-const NavItem = styled.li``;
-
-const StyledNavLink = styled(NavLink)`
-  display: block;
-  padding: 0.75rem 1.5rem;
-  color: var(--color-text-secondary);
-  text-decoration: none;
-  font-size: 0.9rem;
-  border-left: 3px solid transparent;
-  transition: all 0.2s ease-in-out;
-
-  &.active {
-    color: var(--color-text-primary);
-    background-color: var(--color-secondary);
-    border-left: 3px solid var(--color-accent-blue);
-  }
-`;
-
-const NAV_ITEMS = [
-  { to: '/', label: '1. GOD’S EYE OVERVIEW' },
-  { to: '/patient-intelligence', label: '2. PATIENT INTELLIGENCE' },
-  { to: '/clinic-performance', label: '3. CLINIC PERFORMANCE' },
-  { to: '/marketplace-infrastructure', label: '4. MARKETPLACE INFRASTRUCTURE' },
-  { to: '/vendor-supply-grid', label: '5. VENDOR SUPPLY GRID' },
-  { to: '/ai-triage-engine', label: '6. AI TRIAGE ENGINE' },
-  { to: '/compliance-security', label: '7. COMPLIANCE & SECURITY' },
-  { to: '/revenue-forecasting', label: '8. REVENUE & FORECASTING' },
-  { to: '/system-logs', label: '9. SYSTEM LOGS' },
-  { to: '/control-panel', label: '10. CONTROL PANEL' },
+const modules = [
+  { label: '1. GOD’S EYE OVERVIEW', href: '/' },
+  { label: '2. PATIENT INTELLIGENCE', href: '/patient-intelligence' },
+  { label: '3. CLINIC PERFORMANCE', href: '/clinic-performance' },
+  { label: '4. MARKETPLACE INFRASTRUCTURE', href: '/marketplace-infrastructure' },
+  { label: '5. VENDOR SUPPLY GRID', href: '/vendor-supply-grid' },
+  { label: '6. AI TRIAGE ENGINE', href: '/ai-triage-engine' },
+  { label: '7. COMPLIANCE & SECURITY', href: '/compliance-security' },
+  { label: '8. REVENUE & FORECASTING', href: '/revenue-forecasting' },
+  { label: '9. SYSTEM LOGS', href: '/system-logs' },
+  { label: '10. CONTROL PANEL', href: '/control-panel' },
 ];
 
 const Sidebar = () => {
+  const pathname = usePathname();
+
   return (
-    <NavContainer>
-      <Logo>NOVALYTE AI</Logo>
-      <NavList>
-        {NAV_ITEMS.map((item) => (
-          <NavItem key={item.label}>
-            <StyledNavLink to={item.to}>
-              {item.label}
-            </StyledNavLink>
-          </NavItem>
-        ))}
-      </NavList>
-    </NavContainer>
+    <aside className="fixed inset-y-0 left-0 z-30 w-72 border-r border-white/10 bg-[#070707]">
+      <div className="border-b border-white/10 px-6 py-6">
+        <div className="mb-3 flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-white/60">
+          <Shield size={16} className="text-teal" />
+          Novalyte // Command
+        </div>
+        <div className="flex items-center justify-between text-[11px] font-mono text-white/60">
+          <span>ID: 0x92AF:CTRL</span>
+          <Radar size={16} className="text-amber" />
+        </div>
+      </div>
+      <nav className="flex h-[calc(100%-112px)] flex-col overflow-y-auto px-4 py-6">
+        <span className="mb-4 text-[11px] uppercase tracking-[0.3em] text-white/40">
+          Modules
+        </span>
+        <ul className="space-y-2">
+          {modules.map((module) => {
+            const isActive = pathname === module.href;
+            return (
+              <li key={module.href}>
+                <Link
+                  href={module.href}
+                  data-active={isActive}
+                  className="group block border border-white/10 bg-black/30 px-3 py-3 text-[11px] uppercase tracking-wide text-white/60 transition-none data-[active=true]:border-teal data-[active=true]:text-white data-[active=true]:bg-white/5"
+                >
+                  {module.label}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+    </aside>
   );
 };
 
