@@ -3,20 +3,20 @@
 import { useMemo, useState } from 'react';
 import ForecastingModels from './ForecastingModels';
 
-const scenarioMap = {
-  '-1': {
+const scenarioMap: Record<-1 | 0 | 1, { label: string; tone: string; narrative: string }> = {
+  [-1]: {
     label: 'Downside',
     tone: 'text-crimson',
     narrative:
       'Marketplace softness and vendor lags. Maintain liquidity buffers and tighten partner payouts.',
   },
-  '0': {
+  0: {
     label: 'Base',
     tone: 'text-amber',
     narrative:
       'Steady expansion driven by TRT + GLP-1 demand. AI advises incremental capital deployment.',
   },
-  '1': {
+  1: {
     label: 'Optimistic',
     tone: 'text-teal',
     narrative:
@@ -48,14 +48,14 @@ const ScenarioForecast = () => {
           onChange={(e) => setScenario(Number(e.target.value) as -1 | 0 | 1)}
           className="mt-2 w-full accent-teal"
         />
-        <div className={`font-mono text-sm ${scenarioMap[String(scenario)].tone}`}>
-          {scenarioMap[String(scenario)].label}
+        <div className={`font-mono text-sm ${scenarioMap[scenario].tone}`}>
+          {scenarioMap[scenario].label}
         </div>
       </div>
       <ForecastingModels scenario={dataKey} />
       <div className="border border-white/10 bg-black/40 p-4 text-sm text-white/70">
         <p className="font-mono text-xs text-white/40">AI Narrative</p>
-        <p>{scenarioMap[String(scenario)].narrative}</p>
+        <p>{scenarioMap[scenario].narrative}</p>
       </div>
     </div>
   );

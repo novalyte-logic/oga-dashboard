@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
+    "predev": "node -e \"try{require('fs').rmSync('.next',{recursive:true,force:true});}catch(e){process.exit(0);}\"",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

@@ -11,12 +11,12 @@ interface Metric {
 }
 
 const baseMetrics: Metric[] = [
-  { label: 'Real-Time Gross Revenue', value: 182_400_000, format: 'currency', tone: 'teal' },
-  { label: 'Monthly Recurring Revenue', value: 48_200_000, format: 'currency', tone: 'teal' },
-  { label: 'Annual Run Rate', value: 612_800_000, format: 'currency', tone: 'teal' },
-  { label: 'Patient LTV', value: 18_200, format: 'currency', tone: 'amber' },
-  { label: 'Cost Per Acquisition', value: 640, format: 'currency', tone: 'amber' },
-  { label: 'AI Efficiency Ratio', value: 92, format: 'percent', suffix: '%', tone: 'teal' },
+  { label: 'Total Revenue (real-time)', value: 212_400_000, format: 'currency', tone: 'teal' },
+  { label: 'Clinics Revenue', value: 96_200_000, format: 'currency', tone: 'teal' },
+  { label: 'Marketplace Revenue', value: 74_500_000, format: 'currency', tone: 'teal' },
+  { label: 'Vendor Revenue', value: 41_700_000, format: 'currency', tone: 'teal' },
+  { label: 'Patient LTV', value: 19_800, format: 'currency', tone: 'amber' },
+  { label: 'CAC / Break-even', value: 610, format: 'currency', tone: 'amber' },
 ];
 
 const formatter = (metric: Metric) => {

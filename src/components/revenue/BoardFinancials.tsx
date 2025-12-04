@@ -15,14 +15,30 @@ const burnGrowthData = [
   { month: 'M10', burn: -13, growth: 51 },
 ];
 
+const categoryROI = [
+  { label: 'GLP-1 Programs', value: '168% ROI' },
+  { label: 'TRT Marketplace', value: '154% ROI' },
+  { label: 'Peptide Suites', value: '129% ROI' },
+];
+
 const BoardFinancials = () => {
   return (
     <div className="space-y-4">
-      <div className="grid gap-4 md:grid-cols-3">
+      <div className="grid gap-4 md:grid-cols-5">
         <div className="border border-white/10 bg-black/40 p-4">
           <p className="text-[10px] uppercase tracking-[0.3em] text-white/40">Break-even ETA</p>
           <p className="font-mono text-3xl text-teal">6.2 mo</p>
           <p className="text-sm text-white/60">Projection at current burn/growth delta</p>
+        </div>
+        <div className="border border-white/10 bg-black/40 p-4">
+          <p className="text-[10px] uppercase tracking-[0.3em] text-white/40">Burn vs Growth Score</p>
+          <p className="font-mono text-3xl text-teal">0.78</p>
+          <p className="text-sm text-white/60">Closer to zero =&gt; balance point</p>
+        </div>
+        <div className="border border-white/10 bg-black/40 p-4">
+          <p className="text-[10px] uppercase tracking-[0.3em] text-white/40">Cashflow Projection</p>
+          <p className="font-mono text-3xl text-amber">$118M</p>
+          <p className="text-sm text-white/60">Positive cashflow @ Q4 close</p>
         </div>
         <div className="border border-white/10 bg-black/40 p-4">
           <p className="text-[10px] uppercase tracking-[0.3em] text-white/40">Infrastructure ROI</p>
@@ -30,9 +46,9 @@ const BoardFinancials = () => {
           <p className="text-sm text-white/60">Projected over 18-month hardware amortization</p>
         </div>
         <div className="border border-white/10 bg-black/40 p-4">
-          <p className="text-[10px] uppercase tracking-[0.3em] text-white/40">Capital Efficiency</p>
-          <p className="font-mono text-3xl text-teal">1.34x</p>
-          <p className="text-sm text-white/60">Revenue expansion per deployed $1</p>
+          <p className="text-[10px] uppercase tracking-[0.3em] text-white/40">Year-end Revenue</p>
+          <p className="font-mono text-3xl text-teal">$1.08B</p>
+          <p className="text-sm text-white/60">AI aggregated estimate</p>
         </div>
       </div>
       <div className="h-72 border border-white/10 bg-black/40 px-2 py-1">
@@ -52,6 +68,14 @@ const BoardFinancials = () => {
             <Line type="monotone" dataKey="growth" stroke="#00f0b5" strokeWidth={2} dot={false} name="Growth delta" />
           </LineChart>
         </ResponsiveContainer>
+      </div>
+      <div className="grid gap-3 md:grid-cols-3">
+        {categoryROI.map((item) => (
+          <div key={item.label} className="border border-white/10 bg-black/40 p-3">
+            <p className="font-mono text-xs text-white/40">{item.label}</p>
+            <p className="text-lg text-white">{item.value}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
